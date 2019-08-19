@@ -22,7 +22,8 @@ def main():
     ).return_ssh_cmd()
     tmux_session = TmuxSession(
         subprocess,
-        libtmux,
+        libtmux.Server(),
+        libtmux.exc,
         args
     ).get_session()
     tmux_window = TmuxWindow(

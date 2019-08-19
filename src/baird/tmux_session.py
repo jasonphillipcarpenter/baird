@@ -3,11 +3,11 @@
 
 class TmuxSession:
     """Define TMUX session"""
-    def __init__(self, subprocess, tmux, args):
+    def __init__(self, subprocess, tmux_server, tmux_exception, args):
         self.subprocess = subprocess
-        self.tmux = tmux
+        self.tmux_server = tmux_server
+        self.tmux_exception = tmux_exception
         self.args = args
-        self.tmux_server = tmux.Server()
 
     def get_current_session_id(self):
         """
@@ -42,6 +42,6 @@ class TmuxSession:
         """
         try:
             session = self.get_current_session_id()
-        except self.tmux.exc.LibTmuxException:
+        except self.tmux_exception.LibTmuxException:
             session = self.get_new_session_id()
         return session
