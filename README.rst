@@ -65,3 +65,9 @@ Running Tests
 .. code-block:: bash
 
   make test
+
+
+Notes
+-----
+
+Logo is puppet by Luis Prado from the Noun Project
