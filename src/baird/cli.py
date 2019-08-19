@@ -39,7 +39,9 @@ class Cli:
         )
 
     def add_arguments(self):
-        """Add arguments for command-line interface"""
+        """
+        Add arguments for command-line interface
+        """
         self.parser.add_argument(
             '-t', '--title', metavar='<TITLE>', default='BAIRD',
             help="Specify the tmux window title. (default: %(default)s)\n")
@@ -69,6 +71,10 @@ class Cli:
             help="REQUIRED: Specify a list of servers to which to connect.\n")
 
     def return_parser(self):
-        """Return argument_parser"""
+        """
+        Return argument_parser
+
+        :returns: parsed arguments
+        """
         self.add_arguments()
         return self.parser.parse_args()
