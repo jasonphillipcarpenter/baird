@@ -4,7 +4,10 @@ BAIRD
 
 Baird is a system administration tool for simultaneous management of multiple instances through SSH.  Baird utilises tmux_ to create individual panes per instance and facilitate synchronised input.
 
+Baird is named after the puppeteer, Bil Baird_
+
 .. _tmux: https://tmux.github.io/
+.. _baird: https://en.wikipedia.org/wiki/Bil_Baird
 
 Preparing the Development
 -------------------------
