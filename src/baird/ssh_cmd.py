@@ -14,7 +14,7 @@ class SSHCmd:
         :returns: bastion_login
         """
         if self.args.bastion_login:
-            self.ssh_cmd = self.ssh_cmd + ' -l ' + self.args.bastion_login
+            self.ssh_cmd = f"{self.ssh_cmd} -l {self.args.bastion_login}"
 
     def bastion_id(self):
         """
@@ -23,7 +23,7 @@ class SSHCmd:
         :returns: bastion_id
         """
         if self.args.bastion_id:
-            self.ssh_cmd = self.ssh_cmd + ' -i ' + self.args.bastion_id
+            self.ssh_cmd = f"{self.ssh_cmd} -i {self.args.bastion_id}"
 
     def bastion(self):
         """
@@ -32,7 +32,7 @@ class SSHCmd:
         :returns: bastion
         """
         if self.args.bastion:
-            self.ssh_cmd = self.ssh_cmd + ' ' + self.args.bastion + ' -At ssh '
+            self.ssh_cmd = f"{self.ssh_cmd} {self.args.bastion} -At ssh "
 
     def login(self):
         """
@@ -41,7 +41,7 @@ class SSHCmd:
         :returns: login
         """
         if self.args.login:
-            self.ssh_cmd = self.ssh_cmd + ' -l ' + self.args.login
+            self.ssh_cmd = f"{self.ssh_cmd} -l {self.args.login}"
 
     def identityfile(self):
         """
@@ -50,7 +50,7 @@ class SSHCmd:
         :returns: identityfile
         """
         if self.args.identityfile:
-            self.ssh_cmd = self.ssh_cmd + ' -i ' + self.args.identityfile
+            self.ssh_cmd = f"{self.ssh_cmd} -i {self.args.identityfile}"
 
     def return_ssh_cmd(self):
         """
