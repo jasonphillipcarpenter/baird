@@ -4,7 +4,6 @@
 class Cli:
     """Handle command-line arguments"""
     def __init__(self, argument_parser, text_wrapper):
-        self.argument_parser = argument_parser
         self.parser = argument_parser.ArgumentParser(
             formatter_class=argument_parser.RawTextHelpFormatter,
             description=text_wrapper.dedent('''\
@@ -28,7 +27,7 @@ class Cli:
 
                     Using a bastion server:
                     %(prog)s \\
-                        --title 'Production'
+                        --title 'Production' \\
                         --bastion bastion01 \\
                         --bastion-login bastionuser \\
                         --bastion-id ~/.ssh/bastionkey \\
