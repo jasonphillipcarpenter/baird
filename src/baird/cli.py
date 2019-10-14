@@ -4,7 +4,7 @@
 class Cli:
     """Handle command-line arguments"""
     def __init__(self, argument_parser, text_wrapper):
-        self.parser = argument_parser.ArgumentParser(
+        self.argparse = argument_parser.ArgumentParser(
             formatter_class=argument_parser.RawTextHelpFormatter,
             description=text_wrapper.dedent('''\
                 Use Tmux to ssh to mutliple targets at once.
@@ -42,39 +42,48 @@ class Cli:
         """
         Add arguments for command-line interface
         """
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-t', '--title', metavar='<TITLE>', default='BAIRD',
             help="Specify the tmux window title. (default: %(default)s)\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-l', '--login', metavar='<LOGIN>',
             help="Specify the username for the connection.\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-i', '--identityfile', metavar='<IDENTITY FILE>',
             help="Specify the SSH key for the connection.\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-b', '--bastion', metavar='<BASTION SERVER>',
             help="Specify bastion server for the connection.\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-bl', '--bastion-login', metavar='<BASTION LOGIN>',
             help="Specify bastion server username for the connection.\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             '-bi', '--bastion-id', metavar='<BASTION ID>',
             help="Specify bastion server SSH key for the connection.\n")
 
-        self.parser.add_argument(
+        self.argparse.add_argument(
             'servers', metavar='<SERVER LIST>', type=str, nargs='+',
             help="REQUIRED: Specify a list of servers to which to connect.\n")
 
-    def return_parser(self):
+    def return_args(self):
         """
         Return argument_parser
 
         :returns: parsed arguments
         """
         self.add_arguments()
-        return self.parser.parse_args()
+        return self.argparse.parse_args()
+
+    def return_parser(self):
+        """
+        Return argument_parser
+
+        :returns: argparse
+        """
+        self.add_arguments()
+        return self.argparse

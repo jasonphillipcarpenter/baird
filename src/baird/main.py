@@ -16,7 +16,7 @@ def main():
         argparse,
         textwrap
     )
-    args = parser.return_parser()
+    args = parser.return_args()
     ssh_cmd = SSHCmd(
         args
     ).return_ssh_cmd()
