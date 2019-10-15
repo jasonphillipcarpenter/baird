@@ -13,8 +13,7 @@ class SSHCmd:
 
         :returns: bastion_login
         """
-        if self.args.bastion_login:
-            self.ssh_cmd = f"{self.ssh_cmd} -l {self.args.bastion_login}"
+        return f"-l {self.args.bastion_login}"
 
     def bastion_id(self):
         """
@@ -22,8 +21,7 @@ class SSHCmd:
 
         :returns: bastion_id
         """
-        if self.args.bastion_id:
-            self.ssh_cmd = f"{self.ssh_cmd} -i {self.args.bastion_id}"
+        return f"-i {self.args.bastion_id}"
 
     def bastion(self):
         """
@@ -31,8 +29,7 @@ class SSHCmd:
 
         :returns: bastion
         """
-        if self.args.bastion:
-            self.ssh_cmd = f"{self.ssh_cmd} {self.args.bastion} -At ssh "
+        return f"{self.args.bastion} -At ssh"
 
     def login(self):
         """
@@ -40,8 +37,7 @@ class SSHCmd:
 
         :returns: login
         """
-        if self.args.login:
-            self.ssh_cmd = f"{self.ssh_cmd} -l {self.args.login}"
+        return f"-l {self.args.login}"
 
     def identityfile(self):
         """
@@ -49,8 +45,7 @@ class SSHCmd:
 
         :returns: identityfile
         """
-        if self.args.identityfile:
-            self.ssh_cmd = f"{self.ssh_cmd} -i {self.args.identityfile}"
+        return f"-i {self.args.identityfile}"
 
     def return_ssh_cmd(self):
         """
@@ -58,9 +53,15 @@ class SSHCmd:
 
         :returns: ssh_cmd
         """
-        self.bastion_login()
-        self.bastion_id()
-        self.bastion()
-        self.login()
-        self.identityfile()
-        return self.ssh_cmd
+        ssh_cmd = [self.ssh_cmd]
+        if self.args.bastion_login:
+            ssh_cmd.append(self.bastion_login())
+        if self.args.bastion_id:
+            ssh_cmd.append(self.bastion_id())
+        if self.args.bastion:
+            ssh_cmd.append(self.bastion())
+        if self.args.login:
+            ssh_cmd.append(self.login())
+        if self.args.identityfile:
+            ssh_cmd.append(self.identityfile())
+        return ' '.join(ssh_cmd)
