@@ -12,29 +12,14 @@ from baird.connections import Connections
 
 def main():
     """Connect to multiple servers using tmux"""
-    parser = Cli(
-        argparse,
-        textwrap
-    )
+    parser = Cli(argparse, textwrap)
     args = parser.return_args()
-    ssh_cmd = SSHCmd(
-        args
-    ).return_ssh_cmd()
+    ssh_cmd = SSHCmd(args).return_ssh_cmd()
     tmux_session = TmuxSession(
-        subprocess,
-        libtmux.Server(),
-        libtmux.exc,
-        args
+        subprocess, libtmux.Server(), libtmux.exc, args
     ).get_session()
-    tmux_window = TmuxWindow(
-        tmux_session,
-        args
-    ).return_new_window()
-    Connections(
-        tmux_window,
-        ssh_cmd,
-        args
-    ).create_connections()
+    tmux_window = TmuxWindow(tmux_session, args).return_new_window()
+    Connections(tmux_window, ssh_cmd, args).create_connections()
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@
 
 class TmuxWindow:
     """Define a TMUX window"""
+
     def __init__(self, session, args):
         self.session = session
         self.args = args
@@ -13,5 +14,4 @@ class TmuxWindow:
 
         :returns: TMUX window
         """
-        return self.session.new_window(
-            attach=True, window_name=self.args.title)
+        return self.session.new_window(attach=True, window_name=self.args.title)

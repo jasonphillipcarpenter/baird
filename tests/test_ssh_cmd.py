@@ -11,9 +11,7 @@ def test_ssh_cmd_strings():
     Will succeed when expected strings are returned
     """
     args = Cli()
-    ssh_cmd = SSHCmd(
-        args
-    )
+    ssh_cmd = SSHCmd(args)
     assert ssh_cmd.bastion_login() == f"-l {args.bastion_login}"
     assert ssh_cmd.bastion_id() == f"-i {args.bastion_id}"
     assert ssh_cmd.bastion() == f"{args.bastion} -At ssh"
@@ -26,16 +24,19 @@ def test_return_ssh_cmd():
     Will succeed when expected string is returned
     """
     args = Cli()
-    ssh_cmd = SSHCmd(
-        args
-    )
+    ssh_cmd = SSHCmd(args)
     mock_ssh_cmd = [
-        'ssh',
-        '-l', args.bastion_login,
-        '-i', args.bastion_id,
-        args.bastion, '-At ssh',
-        '-l', args.login,
-        '-i', args.identityfile,
+        "ssh",
+        "-l",
+        args.bastion_login,
+        "-i",
+        args.bastion_id,
+        args.bastion,
+        "-At ssh",
+        "-l",
+        args.login,
+        "-i",
+        args.identityfile,
     ]
 
-    assert ssh_cmd.return_ssh_cmd() == ' '.join(mock_ssh_cmd)
+    assert ssh_cmd.return_ssh_cmd() == " ".join(mock_ssh_cmd)

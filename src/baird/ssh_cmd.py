@@ -3,9 +3,10 @@
 
 class SSHCmd:
     """Create SSH command line from arguments"""
+
     def __init__(self, args):
         self.args = args
-        self.ssh_cmd = 'ssh'
+        self.ssh_cmd = "ssh"
 
     def bastion_login(self):
         """
@@ -64,4 +65,4 @@ class SSHCmd:
             ssh_cmd.append(self.login())
         if self.args.identityfile:
             ssh_cmd.append(self.identityfile())
-        return ' '.join(ssh_cmd)
+        return " ".join(ssh_cmd)
