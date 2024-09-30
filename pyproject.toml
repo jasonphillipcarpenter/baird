@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "baird"
+version = "0.1.0"
+description = "Baird is a system administration tool for simultaneous management of multiple instances through SSH.  Baird utilises tmux to create individual panes per instance and facilitate synchronised input."
+authors = ["boweevil <jpc@jasoncarpenter.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+libtmux = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "*"
+jedi = "*"
+flake8 = "*"
+pytest = "*"
+pytest-cov = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
