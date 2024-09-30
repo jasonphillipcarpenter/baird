@@ -1,5 +1,4 @@
----
-title: BAIRD
+BAIRD
 ---
 
 Baird is a system administration tool for simultaneous management of
