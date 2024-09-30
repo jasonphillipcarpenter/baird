@@ -7,7 +7,7 @@ install:
 	pipenv install --dev --skip-lock
 
 test:
-	PYTHONPATH=./:./tests poetry run pytest --cov=baird
+	PYTHONPATH=./:./tests poetry run pytest --cov=baird --disable-warnings
 
 coverage:
 	poetry run pytest --cov-report html:cov_html \

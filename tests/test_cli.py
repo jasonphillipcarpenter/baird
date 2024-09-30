@@ -5,6 +5,8 @@
 import argparse
 import textwrap
 import pytest
+import toml
+from unittest import mock
 
 from baird.cli import Cli
 
@@ -31,7 +33,18 @@ def parser():
     """
     Return arguments
     """
-    return Cli(argparse, textwrap).return_parser()
+    return Cli(argparse, textwrap, toml).return_parser()
+
+
+@pytest.mark.parametrize("args", [["--version"]])
+def test_cli_with_version(parser, args):
+    """
+    Test that --version outputs the correct version
+    """
+    with mock.patch("sys.exit") as exit_mock, mock.patch("sys.stdout", new_callable=mock.MagicMock()) as stdout_mock:
+        parser.parse_args(args)
+        exit_mock.assert_called_once()
+        stdout_mock.write.assert_called_once_with("pytest 1.0.0\n")
 
 
 def test_cli_with_args(parser):
@@ -53,4 +66,4 @@ def test_cli_without_servers():
     Will fail when no servers are passed
     """
     with pytest.raises(SystemExit):
-        Cli(argparse, textwrap).return_args()
+        Cli(argparse, textwrap, toml).return_args()

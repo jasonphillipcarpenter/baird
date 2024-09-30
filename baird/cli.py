@@ -4,7 +4,7 @@
 class Cli:
     """Handle command-line arguments"""
 
-    def __init__(self, argument_parser, text_wrapper):
+    def __init__(self, argument_parser, text_wrapper, toml):
         self.argparse = argument_parser.ArgumentParser(
             formatter_class=argument_parser.RawTextHelpFormatter,
             description=text_wrapper.dedent(
@@ -42,11 +42,23 @@ class Cli:
                """
             ),
         )
+        self._pyproject = toml.load("pyproject.toml")
+
+    def get_version(self):
+        return self._pyproject["tool"]["poetry"]["version"]
 
     def add_arguments(self):
         """
         Add arguments for command-line interface
         """
+        self.argparse.add_argument(
+            "-v",
+            "--version",
+            action="version",
+            version=f"%(prog)s {self.get_version()}",
+            help="Show %(prog)s version\n",
+        )
+
         self.argparse.add_argument(
             "-t",
             "--title",
@@ -94,7 +106,7 @@ class Cli:
             "servers",
             metavar="<SERVER LIST>",
             type=str,
-            nargs="+",
+            nargs="*",
             help="REQUIRED: Specify a list of servers to which to connect.\n",
         )
 
