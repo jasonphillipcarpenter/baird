@@ -44,7 +44,7 @@ def test_cli_with_version(parser, args):
     with mock.patch("sys.exit") as exit_mock, mock.patch("sys.stdout", new_callable=mock.MagicMock()) as stdout_mock:
         parser.parse_args(args)
         exit_mock.assert_called_once()
-        stdout_mock.write.assert_called_once_with("pytest 1.0.0\n")
+        stdout_mock.write.assert_called_once_with("pytest 1.0.1\n")
 
 
 def test_cli_with_args(parser):
