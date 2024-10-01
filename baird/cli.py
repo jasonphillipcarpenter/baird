@@ -4,7 +4,7 @@
 class Cli:
     """Handle command-line arguments"""
 
-    def __init__(self, argument_parser, text_wrapper, toml):
+    def __init__(self, argument_parser, text_wrapper, path, toml):
         self.argparse = argument_parser.ArgumentParser(
             formatter_class=argument_parser.RawTextHelpFormatter,
             description=text_wrapper.dedent(
@@ -42,10 +42,14 @@ class Cli:
                """
             ),
         )
-        self._pyproject = toml.load("pyproject.toml")
+        self._path = path
+        self._toml = toml
 
     def get_version(self):
-        return self._pyproject["tool"]["poetry"]["version"]
+        pyproject_file = f"{self._path(__file__).parent}/../pyproject.toml"
+        pyproject_data = self._toml.load(pyproject_file)
+        version = pyproject_data["tool"]["poetry"]["version"]
+        return version
 
     def add_arguments(self):
         """

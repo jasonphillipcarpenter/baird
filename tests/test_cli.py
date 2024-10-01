@@ -6,6 +6,7 @@ import argparse
 import textwrap
 import pytest
 import toml
+from pathlib import Path
 from unittest import mock
 
 from baird.cli import Cli
@@ -33,7 +34,7 @@ def parser():
     """
     Return arguments
     """
-    return Cli(argparse, textwrap, toml).return_parser()
+    return Cli(argparse, textwrap, Path, toml).return_parser()
 
 
 @pytest.mark.parametrize("args", [["--version"]])
@@ -66,4 +67,4 @@ def test_cli_without_servers():
     Will fail when no servers are passed
     """
     with pytest.raises(SystemExit):
-        Cli(argparse, textwrap, toml).return_args()
+        Cli(argparse, textwrap, Path, toml).return_args()
