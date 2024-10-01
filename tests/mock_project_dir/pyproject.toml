@@ -1,0 +1,3 @@
+[tool.poetry]
+name = "baird"
+version = "1.0.1"

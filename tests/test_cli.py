@@ -6,7 +6,7 @@ import argparse
 import textwrap
 import pytest
 import toml
-from pathlib import Path
+import pathlib
 from unittest import mock
 
 from baird.cli import Cli
@@ -28,13 +28,19 @@ ARGS = [
     "mockserver2",
 ]
 
+class MockPathlib:
+    def __init__(self, file):
+        self.__file__ = file
+        self.parent = f"{pathlib.Path(__file__).parent}/mock_project_dir/mock_src"
+
 
 @pytest.fixture
 def parser():
     """
     Return arguments
     """
-    return Cli(argparse, textwrap, Path, toml).return_parser()
+    path = MockPathlib
+    return Cli(argparse, textwrap, path, toml).return_parser()
 
 
 @pytest.mark.parametrize("args", [["--version"]])
@@ -66,5 +72,6 @@ def test_cli_without_servers():
     """
     Will fail when no servers are passed
     """
+    path = MockPathlib
     with pytest.raises(SystemExit):
-        Cli(argparse, textwrap, Path, toml).return_args()
+        Cli(argparse, textwrap, path, toml).return_args()
