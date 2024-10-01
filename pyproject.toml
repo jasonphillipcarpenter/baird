@@ -18,6 +18,9 @@ flake8 = "*"
 pytest = "*"
 pytest-cov = "*"
 
+[tool.poetry.scripts]
+baird = "baird.__main__:main"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

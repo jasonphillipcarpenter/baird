@@ -1,10 +1,13 @@
 
-.PHONY: install test
+.PHONY: install build test coverage
 
 default: test
 
 install:
 	pipenv install --dev --skip-lock
+
+build:
+	poetry build
 
 test:
 	PYTHONPATH=./:./tests poetry run pytest --cov=baird --disable-warnings

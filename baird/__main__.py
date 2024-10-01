@@ -4,11 +4,11 @@ import textwrap
 import argparse
 import libtmux
 import toml
-from cli import Cli
-from ssh_cmd import SSHCmd
-from tmux_session import TmuxSession
-from tmux_window import TmuxWindow
-from connections import Connections
+from baird.cli import Cli
+from baird.ssh_cmd import SSHCmd
+from baird.tmux_session import TmuxSession
+from baird.tmux_window import TmuxWindow
+from baird.connections import Connections
 
 
 def main():
