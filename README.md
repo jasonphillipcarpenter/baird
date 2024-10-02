@@ -19,6 +19,12 @@ Baird is named after the puppeteer, Bil
 
 # Installation
 
+- Install using pip
+
+```shell
+pip install -e .
+```
+
 # Usage
 
 ``` bash
