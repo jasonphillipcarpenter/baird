@@ -110,7 +110,7 @@ class Cli:
             "servers",
             metavar="<SERVER LIST>",
             type=str,
-            nargs="*",
+            nargs="+",
             help="REQUIRED: Specify a list of servers to which to connect.\n",
         )
 
