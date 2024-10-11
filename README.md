@@ -7,6 +7,8 @@ multiple instances through SSH. Baird utilises
 [tmux](https://tmux.github.io/) to create individual panes per instance
 and facilitate synchronised input.
 
+![Demo](assets/demo.gif)
+
 Baird is named after the puppeteer, Bil
 [Baird](https://en.wikipedia.org/wiki/Bil_Baird)
 
