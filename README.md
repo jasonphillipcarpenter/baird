@@ -1,5 +1,7 @@
 ## BAIRD
 
+![alt text](assets/Baird3-IM-192x192.png "Baird")
+
 Baird is a system administration tool for simultaneous management of
 multiple instances through SSH. Baird utilises
 [tmux](https://tmux.github.io/) to create individual panes per instance
