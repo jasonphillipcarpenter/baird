@@ -1,4 +1,4 @@
-# BAIRD
+# Baird
 
 ![alt text](assets/Baird3-IM-192x192.png "Baird")
 
