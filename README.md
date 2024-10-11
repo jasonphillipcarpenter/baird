@@ -1,4 +1,4 @@
-## BAIRD
+# BAIRD
 
 ![alt text](assets/Baird3-IM-192x192.png "Baird")
 
@@ -10,7 +10,7 @@ and facilitate synchronised input.
 Baird is named after the puppeteer, Bil
 [Baird](https://en.wikipedia.org/wiki/Bil_Baird)
 
-# Preparing the Development
+## Preparing the Development
 
 1. Ensure `pip` and `pipenv` are installed.
 2. Clone repository: `git clone git@gitlab.com:boweevil/baird`
@@ -18,7 +18,7 @@ Baird is named after the puppeteer, Bil
 4. Fetch development dependencies `make install`
 5. Activate virtualenv: `pipenv shell`
 
-# Installation
+## Installation
 
 - Install using pip
 
@@ -26,7 +26,7 @@ Baird is named after the puppeteer, Bil
 pip install -e .
 ```
 
-# Usage
+## Usage
 
 ```bash
 baird [-h] [-t <TITLE>] [-l <LOGIN>] [-i <IDENTITY FILE>]
@@ -58,7 +58,7 @@ baird server{01..05}
 baird --title 'Production' --bastion bastion01 --bastion-login bastionuser --bastion-id ~/.ssh/bastionkey --login serveruser --identityfile ~/.ssh/serverkey server{1..3}
 ```
 
-# Running Tests
+## Running Tests
 
 ```bash
 make test
