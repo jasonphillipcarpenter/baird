@@ -14,11 +14,10 @@ Baird is named after the puppeteer, Bil
 
 ## Preparing the Development
 
-1. Ensure `pip` and `pipenv` are installed.
+1. Ensure `pip` and `poetry` are installed.
 2. Clone repository: `git clone git@gitlab.com:boweevil/baird`
 3. `cd` into the repository.
 4. Fetch development dependencies `make install`
-5. Activate virtualenv: `pipenv shell`
 
 ## Installation
 
