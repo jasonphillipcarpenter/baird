@@ -14,17 +14,17 @@ Baird is named after the puppeteer, Bil
 
 ## Preparing the Development
 
-1. Ensure `pip` and `poetry` are installed.
-2. Clone repository: `git clone git@gitlab.com:boweevil/baird`
-3. `cd` into the repository.
-4. Fetch development dependencies `make install`
+1. Ensure [pip] and [poetry] are installed.
+2. Clone repository: `git clone git@gitlab.com:jasoncarpenter/baird`
+3. `cd` into the repository directory.
+4. Fetch development dependencies `make install_pkgs`
 
 ## Installation
 
 - Install using pip
 
 ```shell
-pip install -e .
+make install
 ```
 
 ## Usage
@@ -64,3 +64,6 @@ baird --title 'Production' --bastion bastion01 --bastion-login bastionuser --bas
 ```bash
 make test
 ```
+
+[poetry]: https://python-poetry.org/
+[pip]: https://pip.pypa.io/en/stable/
