@@ -1,6 +1,6 @@
 # Baird
 
-![alt text](assets/Baird3-IM-192x192.png "Baird")
+![alt text](assets/Baird3-icon-192x192.png "Baird")
 
 Baird is a system administration tool for simultaneous management of
 multiple instances through SSH. Baird utilises
