@@ -29,25 +29,24 @@ make install
 
 ## Usage
 
-```bash
-baird [-h] [-t <TITLE>] [-l <LOGIN>] [-i <IDENTITY FILE>]
-      [-b <BASTION SERVER>] [-bl <BASTION LOGIN>] [-bi <BASTION ID>]
+```shell
+baird [-h] [-v] [-t <TITLE>] [-l <LOGIN>] [-i <IDENTITY FILE>] [-b <BASTION SERVER>] [-bl <BASTION LOGIN>] [-bi <BASTION ID>]
       <SERVER LIST> [<SERVER LIST> ...]
 ```
 
 - Connect with user and key:
 
-```bash
+```shell
 baird -l user1 -i ~/.ssh/key server1 server2 server3
 ```
 
 - Using only a list of servers:
 
-```bash
+```shell
 baird server1 server2 server3 server4 server5
 ```
 
-- Bash globbing:
+- Using Bash globbing, we can pass a shorthand list of servers to Baird:
 
 ```bash
 baird server{01..05}
@@ -61,7 +60,7 @@ baird --title 'Production' --bastion bastion01 --bastion-login bastionuser --bas
 
 ## Running Tests
 
-```bash
+```shell
 make test
 ```
 
