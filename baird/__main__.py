@@ -1,4 +1,5 @@
 """Connect to multiple servers using tmux"""
+
 import subprocess
 import textwrap
 import argparse
@@ -10,11 +11,12 @@ from baird.ssh_cmd import SSHCmd
 from baird.tmux_session import TmuxSession
 from baird.tmux_window import TmuxWindow
 from baird.connections import Connections
+from baird.version import __version__
 
 
 def main():
     """Connect to multiple servers using tmux"""
-    parser = Cli(argparse, textwrap, Path, toml)
+    parser = Cli(argparse, textwrap, Path, toml, __version__)
     args = parser.return_args()
     ssh_cmd = SSHCmd(args).return_ssh_cmd()
     tmux_session = TmuxSession(
