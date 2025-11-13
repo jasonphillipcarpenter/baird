@@ -1,4 +1,5 @@
 """Test for baird.cli"""
+
 # pylint: disable=redefined-outer-name
 
 
@@ -27,6 +28,8 @@ ARGS = [
     "mockserver1",
     "mockserver2",
 ]
+VERSION = "1.0.0"
+
 
 class MockPathlib:
     def __init__(self, file):
@@ -40,7 +43,7 @@ def parser():
     Return arguments
     """
     path = MockPathlib
-    return Cli(argparse, textwrap, path, toml).return_parser()
+    return Cli(argparse, textwrap, path, toml, VERSION).return_parser()
 
 
 @pytest.mark.parametrize("args", [["--version"]])
@@ -48,10 +51,12 @@ def test_cli_with_version(parser, args):
     """
     Test that --version outputs the correct version
     """
-    with mock.patch("sys.exit") as exit_mock, mock.patch("sys.stdout", new_callable=mock.MagicMock()) as stdout_mock:
+    with mock.patch("sys.exit") as exit_mock, mock.patch(
+        "sys.stdout", new_callable=mock.MagicMock()
+    ) as stdout_mock:
         parser.parse_args(args)
         exit_mock.assert_called()
-        stdout_mock.write.assert_called_once_with("pytest 1.0.1\n")
+        stdout_mock.write.assert_called_once_with(f"pytest {VERSION}\n")
 
 
 def test_cli_with_args(parser):
@@ -74,4 +79,4 @@ def test_cli_without_servers():
     """
     path = MockPathlib
     with pytest.raises(SystemExit):
-        Cli(argparse, textwrap, path, toml).return_args()
+        Cli(argparse, textwrap, path, toml, VERSION).return_args()
