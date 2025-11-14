@@ -8,7 +8,7 @@ import toml
 from pathlib import Path
 from baird.cli import Cli
 from baird.ssh_cmd import SSHCmd
-from baird.tmux_session import TmuxSession
+from baird.tmux_session_handler import TmuxSessionHandler
 from baird.tmux_window import TmuxWindow
 from baird.connections import Connections
 from baird.version import __version__
@@ -19,11 +19,14 @@ def main():
     parser = Cli(argparse, textwrap, Path, toml, __version__)
     args = parser.return_args()
     ssh_cmd = SSHCmd(args).return_ssh_cmd()
-    tmux_session = TmuxSession(
+    tmux_session_handler = TmuxSessionHandler(
         subprocess, libtmux.Server(), libtmux.exc, args
-    ).get_session()
+    )
+    tmux_session = tmux_session_handler.get_session()
     tmux_window = TmuxWindow(tmux_session, args).return_new_window()
     Connections(tmux_window, ssh_cmd, args).create_connections()
+    if tmux_session_handler.session_is_new:
+        tmux_session_handler.attach_session(tmux_session)
 
 
 if __name__ == "__main__":

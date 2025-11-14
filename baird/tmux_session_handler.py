@@ -1,7 +1,7 @@
 """Setup TMUX session"""
 
 
-class TmuxSession:
+class TmuxSessionHandler:
     """Define TMUX session"""
 
     def __init__(self, subprocess, tmux_server, tmux_exception, args):
@@ -9,6 +9,7 @@ class TmuxSession:
         self.tmux_server = tmux_server
         self.tmux_exception = tmux_exception
         self.args = args
+        self.session_is_new = False
 
     def get_current_session_id(self):
         """
@@ -20,6 +21,8 @@ class TmuxSession:
             ["tmux", "display-message", "-p", '"#{session_id}"'],
             stdout=self.subprocess.PIPE,
         )
+        if not current_session.stdout:
+            raise self.tmux_exception.LibTmuxException("No current TMUX session found")
         current_session_id = current_session.stdout.decode().replace('"', "").rstrip()
         return self.tmux_server.get_by_id(current_session_id)
 
@@ -29,8 +32,9 @@ class TmuxSession:
 
         :returns: New session ID
         """
+        self.session_is_new = True
         return self.tmux_server.new_session(
-            attach=True, session_name=self.args.title, session_id="$0"
+            attach=False, session_name=self.args.title, session_id="$0"
         )
 
     def get_session(self):
@@ -44,3 +48,11 @@ class TmuxSession:
         except self.tmux_exception.LibTmuxException:
             session = self.get_new_session_id()
         return session
+
+    def attach_session(self, session):
+        """
+        Attach to TMUX session
+
+        :param session: TMUX session ID
+        """
+        self.subprocess.run(["tmux", "attach-session", "-t", session.get("session_id")])
