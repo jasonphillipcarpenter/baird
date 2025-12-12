@@ -19,13 +19,13 @@ class Connections:
             print(server_cmd)
             if first == 0:
                 pane = self.window.panes[0]
-                pane.select_pane()
+                pane.select()
                 pane.send_keys(server_cmd)
                 pane = None
             else:
-                pane = self.window.split_window(attach=False)
+                pane = self.window.split(attach=False)
                 self.window.select_layout("tiled")
-                pane.select_pane()
+                pane.select()
                 pane.send_keys(server_cmd)
                 pane = None
 

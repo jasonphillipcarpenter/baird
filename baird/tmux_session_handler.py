@@ -24,7 +24,7 @@ class TmuxSessionHandler:
         if not current_session.stdout:
             raise self.tmux_exception.LibTmuxException("No current TMUX session found")
         current_session_id = current_session.stdout.decode().replace('"', "").rstrip()
-        return self.tmux_server.get_by_id(current_session_id)
+        return self.tmux_server.sessions.get(session_id=current_session_id)
 
     def get_new_session_id(self):
         """
